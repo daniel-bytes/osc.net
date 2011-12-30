@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 
 namespace osc.net
 {
+    // Note that we can only overlap pure value types to get a C-style "union" type.
+    // The string/byte[]/"ref type" objects must live the objvalue field at offset 8.
     [StructLayout(LayoutKind.Explicit)]
     public struct Atom
     {
