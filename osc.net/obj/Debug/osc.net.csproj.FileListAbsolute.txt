@@ -1,5 +1,0 @@
-C:\LocalDev\osc.net\osc.net\obj\Debug\ResolveAssemblyReference.cache
-C:\LocalDev\osc.net\osc.net\bin\Debug\osc.net.dll
-C:\LocalDev\osc.net\osc.net\bin\Debug\osc.net.pdb
-C:\LocalDev\osc.net\osc.net\obj\Debug\osc.net.dll
-C:\LocalDev\osc.net\osc.net\obj\Debug\osc.net.pdb
