@@ -43,6 +43,7 @@
     <Compile Include="Message\MalformedMessageException.cs" />
     <Compile Include="Message\Message.cs" />
     <Compile Include="Message\MessageBuilder.cs" />
+    <Compile Include="Message\MessageDispatch.cs" />
     <Compile Include="Message\MessageParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Message\TypeTag.cs" />
