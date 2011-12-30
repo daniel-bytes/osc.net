@@ -1,0 +1,7 @@
+C:\LocalDev\osc.net\osc.net.client\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\LocalDev\osc.net\osc.net.client\bin\Debug\osc.net.client.exe
+C:\LocalDev\osc.net\osc.net.client\bin\Debug\osc.net.client.pdb
+C:\LocalDev\osc.net\osc.net.client\bin\Debug\osc.net.dll
+C:\LocalDev\osc.net\osc.net.client\bin\Debug\osc.net.pdb
+C:\LocalDev\osc.net\osc.net.client\obj\x86\Debug\osc.net.client.exe
+C:\LocalDev\osc.net\osc.net.client\obj\x86\Debug\osc.net.client.pdb
