@@ -13,7 +13,7 @@ namespace osc.net
         internal Message() { }
 
         public override bool Equals(object obj) {
-            return base.Equals(obj as Message);
+            return this.Equals(obj as Message);
         }
 
         public virtual bool Equals(Message rhs) {

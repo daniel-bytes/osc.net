@@ -37,7 +37,15 @@ namespace osc.net
             this.atoms.Add(new Atom(value));
         }
 
+        public void PushAtom(long value) {
+            this.atoms.Add(new Atom(value));
+        }
+
         public void PushAtom(float value) {
+            this.atoms.Add(new Atom(value));
+        }
+
+        public void PushAtom(double value) {
             this.atoms.Add(new Atom(value));
         }
 

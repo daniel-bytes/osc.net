@@ -1,0 +1,7 @@
+C:\Users\Daniel\Documents\GitHub\osc.net\osc.net.unittests\bin\Debug\osc.net.unittests.dll
+C:\Users\Daniel\Documents\GitHub\osc.net\osc.net.unittests\bin\Debug\osc.net.unittests.pdb
+C:\Users\Daniel\Documents\GitHub\osc.net\osc.net.unittests\bin\Debug\osc.net.dll
+C:\Users\Daniel\Documents\GitHub\osc.net\osc.net.unittests\bin\Debug\osc.net.pdb
+C:\Users\Daniel\Documents\GitHub\osc.net\osc.net.unittests\obj\Debug\osc.net.unittests.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Documents\GitHub\osc.net\osc.net.unittests\obj\Debug\osc.net.unittests.dll
+C:\Users\Daniel\Documents\GitHub\osc.net\osc.net.unittests\obj\Debug\osc.net.unittests.pdb

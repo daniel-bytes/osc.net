@@ -74,11 +74,31 @@ namespace osc.net
             typetag = TypeTag.OscInt32;
         }
 
+        public Atom(long value) {
+            unchecked
+            {
+                float32value = 0;
+                objvalue = null;
+                int32value = (int)value;
+                typetag = TypeTag.OscInt32;
+            }
+        }
+
         public Atom(float value) {
             int32value = 0;
             objvalue = null;
             float32value = value;
             typetag = TypeTag.OscFloat32;
+        }
+
+        public Atom(double value) {
+            unchecked
+            {
+                int32value = 0;
+                objvalue = null;
+                float32value = (float)value;
+                typetag = TypeTag.OscFloat32;
+            }
         }
 
         public Atom(string value) {
@@ -140,6 +160,10 @@ namespace osc.net
             return new Atom(value);
         }
 
+        public static implicit operator Atom(long value) {
+            return new Atom(value);
+        }
+
         public static explicit operator int(Atom atom) {
             if (atom.typetag != TypeTag.OscInt32) throw new InvalidCastException();
             return atom.int32value;
@@ -147,6 +171,10 @@ namespace osc.net
 
         // Float32 cast
         public static implicit operator Atom(float value) {
+            return new Atom(value);
+        }
+
+        public static implicit operator Atom(double value) {
             return new Atom(value);
         }
 
