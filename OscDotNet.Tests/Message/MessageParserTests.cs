@@ -1,16 +1,16 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OscDotNet.Lib;
+using Xunit;
 
-namespace osc.net.unittests.Message
+namespace OscDotNet.Tests
 {
-    [TestClass]
     public class MessageParserTests
     {
-        [TestMethod]
+        [Fact]
         public void MessageParser_Test_Parse()
         {
-            MessageParser parser = new MessageParser();
-            MessageBuilder builder = new MessageBuilder();
+            var parser = new MessageParser();
+            var builder = new MessageBuilder();
             builder.SetAddress("/test");
             builder.PushAtom(new Atom(TypeTag.OscInt32));
             builder.PushAtom(new byte[] { (byte)5 });
@@ -22,90 +22,85 @@ namespace osc.net.unittests.Message
 
 
             // Test
-            osc.net.Message message = builder.ToMessage();
+            Message message = builder.ToMessage();
             
             byte[] bytes = parser.Parse(message);
-            osc.net.Message parsedMessage = parser.Parse(bytes);
+            Message parsedMessage = parser.Parse(bytes);
             byte[] reparsedBytes = parser.Parse(parsedMessage);
 
-            Assert.AreEqual(message, parsedMessage);
-            CollectionAssert.AreEqual(bytes, reparsedBytes);
+            Assert.Equal(message, parsedMessage);
+            Assert.Equal(bytes, reparsedBytes);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void MessageParser_Test_SerializeAddress_Fails_InvalidAddress()
         {
-            MessageParser parser = new MessageParser();
+            var parser = new MessageParser();
             byte[] bytes = GetTestBytes();
 
-            Assert.AreEqual(60, bytes.Length);
+            Assert.Equal(60, bytes.Length);
 
             bytes[0] = (byte)'\\';
 
-            parser.Parse(bytes);
+            Assert.Throws<ArgumentException>(() => parser.Parse(bytes));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(MalformedMessageException))]
+        [Fact]
         public void MessageParser_Test_SerializeAddress_Fails_InvalidAddressPadding()
         {
-            MessageParser parser = new MessageParser();
+            var parser = new MessageParser();
             byte[] bytes = GetTestBytes();
 
-            Assert.AreEqual(60, bytes.Length);
+            Assert.Equal(60, bytes.Length);
 
             bytes[1] = byte.MinValue;
 
-            parser.Parse(bytes);
+            Assert.Throws<MalformedMessageException>(() => parser.Parse(bytes));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(MalformedMessageException))]
+        [Fact]
         public void MessageParser_Test_SerializeAddress_Fails_InvalidAddressDelimiter()
         {
-            MessageParser parser = new MessageParser();
+            var parser = new MessageParser();
             byte[] bytes = GetTestBytes();
 
-            Assert.AreEqual(60, bytes.Length);
+            Assert.Equal(60, bytes.Length);
 
             bytes[1] = (byte)',';
 
-            parser.Parse(bytes);
+            Assert.Throws<MalformedMessageException>(() => parser.Parse(bytes));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(MalformedMessageException))]
+        [Fact]
         public void MessageParser_Test_SerializeTypeTags_Fails_NullTypeTag()
         {
-            MessageParser parser = new MessageParser();
+            var parser = new MessageParser();
             byte[] bytes = GetTestBytes();
 
-            Assert.AreEqual(60, bytes.Length);
+            Assert.Equal(60, bytes.Length);
 
             bytes[9] = byte.MinValue;
 
-            parser.Parse(bytes);
+            Assert.Throws<MalformedMessageException>(() => parser.Parse(bytes));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(MalformedMessageException))]
+        [Fact]
         public void MessageParser_Test_SerializeTypeTags_Fails_InvalidTypeTag()
         {
-            MessageParser parser = new MessageParser();
+            var parser = new MessageParser();
             byte[] bytes = GetTestBytes();
 
-            Assert.AreEqual(60, bytes.Length);
+            Assert.Equal(60, bytes.Length);
 
             bytes[9] = (byte)'x';
 
-            parser.Parse(bytes);
+            Assert.Throws<MalformedMessageException>(() => parser.Parse(bytes));
         }
 
         private byte[] GetTestBytes()
         {
-            MessageParser parser = new MessageParser();
-            MessageBuilder builder = new MessageBuilder();
+            var parser = new MessageParser();
+            var builder = new MessageBuilder();
             builder.SetAddress("/test");
             builder.PushAtom(new Atom(TypeTag.OscInt32));
             builder.PushAtom(new byte[] { (byte)5 });

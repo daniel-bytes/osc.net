@@ -1,46 +1,43 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OscDotNet.Lib;
+using Xunit;
 
-namespace osc.net.unittests.Message
+namespace OscDotNet.Tests
 {
-    [TestClass]
     public class MessageBuilderTests
     {
-        [TestMethod]
+        [Fact]
         public void MessageBuilder_Test_SetAddress_Succeeds()
         {
             var builder = new MessageBuilder();
-            Assert.AreEqual("/", builder.GetAddress());
+            Assert.Equal("/", builder.GetAddress());
 
             builder.SetAddress("/this/is/a/test");
-            Assert.AreEqual("/this/is/a/test", builder.GetAddress());
+            Assert.Equal("/this/is/a/test", builder.GetAddress());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void MessageBuilder_Test_SetAddress_Fails_AddressIsNull()
         {
             var builder = new MessageBuilder();
-            builder.SetAddress(null);
+            Assert.Throws<ArgumentNullException>(() => builder.SetAddress(null));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void MessageBuilder_Test_SetAddress_Fails_AddressIsEmpty()
         {
             var builder = new MessageBuilder();
-            builder.SetAddress("");
+            Assert.Throws<ArgumentException>(() => builder.SetAddress(""));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void MessageBuilder_Test_SetAddress_Fails_AddressIsInvalid()
         {
             var builder = new MessageBuilder();
-            builder.SetAddress("this/is/a/test");
+            Assert.Throws<ArgumentException>(() => builder.SetAddress("this/is/a/test"));
         }
 
-        [TestMethod]
+        [Fact]
         public void MessageBuilder_Test_PushPopSetAtoms()
         {
             var builder = new MessageBuilder();
@@ -53,48 +50,46 @@ namespace osc.net.unittests.Message
             builder.PushAtom(8L);
             builder.PushAtom("Test");
 
-            Assert.AreEqual(7, builder.AtomCount);
+            Assert.Equal(7, builder.AtomCount);
 
             var last = builder.PopAtom();
-            Assert.AreEqual(6, builder.AtomCount);
-            Assert.AreEqual("Test", last);
+            Assert.Equal(6, builder.AtomCount);
+            Assert.Equal("Test", last);
 
             builder.SetAtom(5, 1234);
-            Assert.AreEqual(1234, builder.GetAtom(5));
+            Assert.Equal(1234, builder.GetAtom(5));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Fact]
         public void MessageBuilder_Test_PopAtom_Fails_CollectionEmpty()
         {
             var builder = new MessageBuilder();
-            builder.PopAtom();
+            Assert.Throws<InvalidOperationException>(() => builder.PopAtom());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Fact]
         public void MessageBuilder_Test_SetAtom_Fails_InvalidIndex()
         {
             var builder = new MessageBuilder();
-            builder.SetAtom(0, "test");
+            Assert.Throws<ArgumentOutOfRangeException>(() => builder.SetAtom(0, "test"));
         }
 
-        [TestMethod]
+        [Fact]
         public void MessageBuilder_Test_Reset()
         {
             var builder = new MessageBuilder();
             builder.SetAddress("/test");
             builder.PushAtom(1234);
 
-            Assert.AreEqual("/test", builder.GetAddress());
-            Assert.AreEqual(1, builder.AtomCount);
+            Assert.Equal("/test", builder.GetAddress());
+            Assert.Equal(1, builder.AtomCount);
 
             builder.Reset();
-            Assert.AreEqual("/", builder.GetAddress());
-            Assert.AreEqual(0, builder.AtomCount);
+            Assert.Equal("/", builder.GetAddress());
+            Assert.Equal(0, builder.AtomCount);
         }
 
-        [TestMethod]
+        [Fact]
         public void MessageBuilder_Test_ToMessage()
         {
             var builder = new MessageBuilder();
@@ -109,15 +104,15 @@ namespace osc.net.unittests.Message
 
             var message = builder.ToMessage();
 
-            Assert.AreEqual("/test", message.Address);
-            Assert.AreEqual(7, message.Atoms.Length);
-            Assert.AreEqual(TypeTag.OscInt32, message.Atoms[0].TypeTag);
-            Assert.AreEqual(TypeTag.OscBlob, message.Atoms[1].TypeTag);
-            Assert.AreEqual(TypeTag.OscFloat32, message.Atoms[2].TypeTag);
-            Assert.AreEqual(TypeTag.OscFloat32, message.Atoms[3].TypeTag);
-            Assert.AreEqual(TypeTag.OscInt32, message.Atoms[4].TypeTag);
-            Assert.AreEqual(TypeTag.OscInt32, message.Atoms[5].TypeTag);
-            Assert.AreEqual(TypeTag.OscString, message.Atoms[6].TypeTag);
+            Assert.Equal("/test", message.Address);
+            Assert.Equal(7, message.Atoms.Length);
+            Assert.Equal(TypeTag.OscInt32, message.Atoms[0].TypeTag);
+            Assert.Equal(TypeTag.OscBlob, message.Atoms[1].TypeTag);
+            Assert.Equal(TypeTag.OscFloat32, message.Atoms[2].TypeTag);
+            Assert.Equal(TypeTag.OscFloat32, message.Atoms[3].TypeTag);
+            Assert.Equal(TypeTag.OscInt32, message.Atoms[4].TypeTag);
+            Assert.Equal(TypeTag.OscInt32, message.Atoms[5].TypeTag);
+            Assert.Equal(TypeTag.OscString, message.Atoms[6].TypeTag);
         }
     }
 }

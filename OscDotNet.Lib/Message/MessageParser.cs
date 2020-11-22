@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 
-namespace osc.net
+namespace OscDotNet.Lib
 {
     public class MessageParser
     {

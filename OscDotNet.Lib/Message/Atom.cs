@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace osc.net
+namespace OscDotNet.Lib
 {
     // Note that we can only overlap pure value types to get a C-style "union" type.
     // The string/byte[]/"ref type" objects must live the objvalue field at offset 8.
@@ -119,13 +119,13 @@ namespace osc.net
         // Methods
         public override string ToString() {
             switch (typetag) {
-                case net.TypeTag.OscInt32:
+                case TypeTag.OscInt32:
                     return Int32Value.ToString();
-                case net.TypeTag.OscFloat32:
+                case TypeTag.OscFloat32:
                     return Float32Value.ToString();
-                case net.TypeTag.OscString:
+                case TypeTag.OscString:
                     return StringValue ?? "null";
-                case net.TypeTag.OscBlob:
+                case TypeTag.OscBlob:
                     return ( BlobValue != null ? BitConverter.ToString(BlobValue) : "null" );
                 default:
                     return "unknown";

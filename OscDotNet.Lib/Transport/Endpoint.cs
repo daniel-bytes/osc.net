@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 
-namespace osc.net
+namespace OscDotNet.Lib
 {
     public class OscEndpoint
     {

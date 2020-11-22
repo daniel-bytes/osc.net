@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 
-namespace osc.net
+namespace OscDotNet.Lib
 {
     public delegate void OnClientConnectedCallback();
     public delegate void OnClientDisconnectedCallback();

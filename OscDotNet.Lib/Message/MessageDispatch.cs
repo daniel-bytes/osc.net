@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace osc.net
+namespace OscDotNet.Lib
 {
     public class MessageDispatch
     {

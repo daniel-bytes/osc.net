@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace osc.net
+namespace OscDotNet.Lib
 {
     /// <summary>
     /// An Open Sound Control type tag value.
@@ -11,7 +11,7 @@ namespace osc.net
     public enum TypeTag 
         : byte
     {
-        Unknown = (byte)0,
+        Unknown = 0,
         OscInt32 = (byte)'i',       // int32
         OscFloat32 = (byte)'f',     // float32
         OscString = (byte)'s',      // Osc-string

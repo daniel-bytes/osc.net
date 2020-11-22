@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
 
-namespace osc.net
+namespace OscDotNet.Lib
 {
     public delegate void OnMessageReceivedEventHandler(object sender, MessageReceivedEventArgs e);
 
